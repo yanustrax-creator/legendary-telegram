@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Наше свидание 💗</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px;background:linear-gradient(145deg,#fff0f5,#ffd8e7 55%,#fbe9f1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#7a294e}
+.card{position:relative;width:min(100%,520px);padding:28px 20px;background:rgba(255,255,255,.91);border:1px solid white;border-radius:28px;box-shadow:0 24px 80px #bd66852b;text-align:center;overflow:hidden}
+.heart{font-size:42px;animation:beat 1.5s infinite}
+.tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#c47b9b;font-weight:800}
+h1{font-family:Georgia,serif;font-size:clamp(34px,9vw,48px);line-height:1.08;margin:14px 0;color:#a23868}
+p{font-size:15px;line-height:1.6;margin:12px 0}
+.section{margin:18px 0;padding:16px;background:#fff1f6;border-radius:20px;text-align:left}
+label{display:block;font-size:13px;font-weight:750;margin:0 0 10px}
+input{width:100%;padding:13px;border:1px solid #f0bfd2;border-radius:12px;background:white;color:#74304e;font:inherit;outline-color:#c84e7e}
+.options{display:grid;grid-template-columns:1fr;gap:11px}
+.choice{display:flex;align-items:center;gap:12px;width:100%;padding:10px;border:1px solid #efbfd2;border-radius:16px;background:white;color:#87415f;text-align:left;font-size:14px;cursor:pointer;line-height:1.4;transition:all 0.2s ease}
+.choice img{width:88px;height:86px;object-fit:cover;border-radius:12px;flex-shrink:0;background:#f9dce7}
+.choice .meta{flex:1}.choice strong{display:block}.choice small{display:block;color:inherit;opacity:.76;font-size:12px;margin-top:4px}
+.choice.selected{background:#c84e7e;color:white;border-color:#c84e7e}
+.choice.selected small{color:white}
+.choice.selected .link{color:#ffe3ee}
+.link{display:inline-block;margin-top:6px;color:#ad426d;font-size:12px;text-decoration:underline}
+.buttons{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;position:relative;min-height:60px}
+button{border:0;border-radius:999px;padding:14px 20px;font-size:15px;font-weight:750;cursor:pointer}
+#yes{background:#c84e7e;color:white;box-shadow:0 7px 16px #b65c8024}
+#no{background:#ffe3ee;color:#9d4267;position:relative;transition:transform 0.15s ease-out}
+#result{display:none;margin-top:18px;padding:16px;background:#fff0f5;border-radius:18px;line-height:1.7;font-weight:650;text-align:left}
+#result img{width:100%;max-height:260px;object-fit:cover;border-radius:14px;margin-top:12px}
+.small{font-size:12px;color:#c1839d;margin-top:20px}
+@keyframes beat{50%{transform:scale(1.12)}}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="heart">💌</div>
+  <div class="tag">маленькое послание для тебя</div>
+  <h1>Будешь моим<br>свиданием? 💗</h1>
+  <p>го на мили свиданку, и вкусно кушать 💕</p>
+
+  <div id="interactive-content">
+    <div class="section">
+      <label for="date">🗓 Выбери дату</label>
+      <input type="date" id="date">
+    </div>
+
+    <div class="section">
+      <label>☕ Выбери кафе</label>
+      <div class="options">
+        <button class="choice" type="button" data-group="cafe" data-value="Peace of Cake (피스오브케이크)">
+          <img src="https://ak-d.tripcdn.com/images/1mi5l224x8yewcuy11ACD.jpg?proc=source%2Ftrip" alt="Фото кафе Peace of Cake">
+          <span class="meta"><strong>Peace of Cake</strong><small>피스오브케이크 · уютная кофейня</small><a class="link" href="https://naver.me/5LHT4iSR" target="_blank" rel="noopener" onclick="event.stopPropagation()">Открыть кафе ↗</a></span>
+        </button>
+        <button class="choice" type="button" data-group="cafe" data-value="Whitebaum (화이트바움)">
+          <img src="https://ak-d.tripcdn.com/images/1mi15224x8w12ncp47785.jpg?proc=source%2Ftrip" alt="Фото кафе Whitebaum">
+          <span class="meta"><strong>Whitebaum</strong><small>화이트바움 · просторное кафе-пекарня</small><a class="link" href="https://www.daangn.com/kr/local-profile/%ED%99%94%EC%9D%B4%ED%8A%B8%EB%B0%94%EC%9B%80-99f6ckk9nq9f/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Открыть кафе ↗</a></span>
+        </button>
+        <button class="choice" type="button" data-group="cafe" data-value="Botanical Garden K (식물원K)">
+          <img src="https://cdn.gardening.news/news/photo/201502/1972_3740_2659.jpg" alt="Фото кафе Botanical Garden K">
+          <span class="meta"><strong>Botanical Garden K</strong><small>식물원K · кафе с зелёным интерьером</small><a class="link" href="https://www.diningcode.com/profile.php?rid=R6zTt0yDfrIp" target="_blank" rel="noopener" onclick="event.stopPropagation()">Открыть кафе ↗</a></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>🎬 Выбери фильм</label>
+      <div class="options">
+        <button class="choice" type="button" data-group="movie" data-value="극장판 치이카와: 인어 섬의 비밀">
+          <img src="https://cdn2.colley.kr/colley_post_6123_title_ff2831b9-634c-423e-844c-f25496e6efe7.jpg" alt="Постер фильма Чиикава">
+          <span class="meta"><strong>극장판 치이카와: 인어 섬의 비밀</strong><small>Chiikawa: Mermaid Island’s Secret</small><a class="link" href="https://cgv.co.kr/mShrtU/fP2Qw" target="_blank" rel="noopener" onclick="event.stopPropagation()">Информация о фильме ↗</a></span>
+        </button>
+        <button class="choice" type="button" data-group="movie" data-value="오디세이">
+          <img src="https://assets.eyefilm.nl/images/posters/_1280x1832_crop_center-center_none/poster-The-Odyssey-Christopher-Nolan-US-GB-2026.jpg" alt="Постер фильма Одиссея">
+          <span class="meta"><strong>오디세이</strong><small>The Odyssey · Christopher Nolan</small><a class="link" href="https://www.cgv.co.kr/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Проверить в кинотеатрах ↗</a></span>
+        </button>
+        <button class="choice" type="button" data-group="movie" data-value="파리스 그린이 밝는 날에">
+          <img src="https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2025/12/A-New-Dawn-main-visual-scaled.jpg?ssl=1" alt="Постер фильма A New Dawn">
+          <span class="meta"><strong>파리스 그린이 밝는 날에</strong><small>A NEW DAWN · анимация</small><a class="link" href="https://cine21.com/movie/info/?movie_id=63404" target="_blank" rel="noopener" onclick="event.stopPropagation()">Информация о фильме ↗</a></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons" id="action-buttons">
+    <button id="yes" type="button" onclick="confirmDate()">Да, я согласен 💗</button>
+    <button id="no" type="button">Подумаю 💔</button>
+  </div>
+  
+  <div id="result"></div>
+  <div class="small">с любовью, для тебя ♡</div>
+</main>
+
+<script>
+const picks = { cafe: null, movie: null };
+
+document.querySelectorAll('.choice').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+
+    const group = btn.dataset.group;
+    const value = btn.dataset.value;
+
+    if (picks[group] === value) {
+      picks[group] = null;
+      btn.classList.remove('selected');
+    } else {
+      document.querySelectorAll(`.choice[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+      picks[group] = value;
+      btn.classList.add('selected');
+    }
+  });
+});
+
+const dateInput = document.getElementById('date');
+const today = new Date();
+dateInput.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+function confirmDate() {
+  const date = dateInput.value;
+  const result = document.getElementById('result');
+  
+  if (!date || !picks.cafe || !picks.movie) {
+    result.style.display = 'block';
+    result.textContent = 'Выбери дату, кафе и фильм — и свидание будет спланировано 💞';
+    return;
+  }
+
+  const pretty = new Date(date + 'T12:00:00').toLocaleDateString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+
+  document.getElementById('interactive-content').style.display = 'none';
+  document.getElementById('action-buttons').style.display = 'none';
+  
+  result.style.display = 'block';
+  result.innerHTML = 'Урааа! 🥰<br><br>Тогда <b>' + pretty + '</b> встретимся и сначала пойдем на фильм <b>' + escapeHtml(picks.movie) + '</b>, покушаем в <b>' + escapeHtml(picks.cafe) + '</b> и пойдем кое куда еще 💌' +
+    '<br><br><img src="https://i.imgur.com/gK2R83j.png" alt="Спящий котик">';
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+const noBtn = document.getElementById('no');
+function moveButton() {
+  const x = (Math.random() - 0.5) * 220;
+  const y = (Math.random() - 0.5) * 120;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+noBtn.addEventListener('mouseover', moveButton);
+noBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  moveButton();
+});
+noBtn.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  moveButton();
+});
+</script>
+</body>
+</html>
